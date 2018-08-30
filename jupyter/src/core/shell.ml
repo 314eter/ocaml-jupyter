@@ -33,11 +33,11 @@ type status =
 type exec_request =
   {
     exec_code : string [@key "code"];
-    exec_silent : bool [@key "silent"];
-    exec_store_history : bool [@key "store_history"];
-    exec_user_expr : Yojson.Safe.json [@key "user_expressions"];
-    exec_allow_stdin : bool [@key "allow_stdin"];
-    exec_stop_on_error : bool [@key "stop_on_error"];
+    exec_silent : bool [@key "silent"] [@default true];
+    exec_store_history : bool [@key "store_history"] [@default false];
+    exec_user_expr : Yojson.Safe.json [@key "user_expressions"] [@default `Assoc []];
+    exec_allow_stdin : bool [@key "allow_stdin"] [@default false];
+    exec_stop_on_error : bool [@key "stop_on_error"] [@default false];
   } [@@deriving yojson { strict = false }]
 
 type exec_reply =
